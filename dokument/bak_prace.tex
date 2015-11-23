@@ -1,0 +1,279 @@
+\documentclass[a4paper,12pt]{report}
+%\usepackage[czech]{babel}      % česky psaná práce
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}  % vstupní znaková sada: Windows 1250
+%\usepackage[latin2]{inputenc}  % vstupní znaková sada: ISO Latin 2
+
+\usepackage{amsmath} % balíček pro pokročilou matem. sazbu
+\usepackage{epsfig} % balíčky pro vkládání grafických souborů typu EPS
+\usepackage{graphicx} % balíček pro vložení grafických souborů typu JPG -- přeložte pomocí PDFtex!
+\usepackage{color}
+\usepackage{xcolor}
+%\usepackage{fancybox} % umožňuje pokročilé rámečkování :-)
+%\usepackage{index} % nutno použít v případě tvorby rejstříku balíčkem makeindex
+\usepackage{tabularx}
+
+%\newindex{default}{idx}{ind}{Rejstřík} % zavádí rejstřík v případě použití balíku index
+
+% na generovani textu
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{lipsum}
+
+
+\usepackage{hyperref}
+\hypersetup{pdftitle=Design of an Information System for Support of Forensic Audit}
+\hypersetup{pdfauthor=Edita Pešková}
+
+
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+%odstraneni cislovani od 0
+
+
+\oddsidemargin=10mm   % levý okraj větší (kvůli vazbě)
+\topmargin=-15mm      % horní okraj trochu menší
+\textwidth=150mm      % šířka textu na stránce
+\textheight=240mm     % "výška" textu na stránce
+
+
+\pagenumbering{arabic} % číslování stránek arabskými číslicemi
+\pagestyle{plain}      % stránky číslované dole uprostřed
+\parindent=0pt % odsazení 1. řádku odstavce
+\parskip=7pt   % mezera mezi odstavci
+\frenchspacing % aktivuje použití některých českých typografických pravidel
+
+% definice makra pro české uvozovky:
+\def\bq{\mbox{\kern.1ex\protect\raisebox{-1.3ex}[0pt][0pt]{''}\kern-.1ex}}
+\def\eq{\mbox{\kern-.1ex``\kern.1ex}}
+\def\ifundefined#1{\expandafter\ifx\csname#1\endcsname\relax }%
+\ifundefined{uv}%
+        \gdef\uv#1{\bq #1\eq}
+\fi
+% konec .... použití makra pro psaní český uvozovek: \uv{text uvnitř uvozovek}
+
+
+
+%=========================================================
+
+
+
+%\newcommand{\todo}
+%{{\it
+%}}
+\newcommand{\todo}
+{{\it \color{magenta}
+\ldots TODO \ldots
+}}
+%\newcommand{\name}
+%{{\textit
+%}}
+%
+
+\def\name{\textit}
+
+%=========================================================
+
+
+%%%%%%%%%%%%%%%%%%%%%% zde jsou zavedeny některé "konstanty" - můžete, resp. musíte je ZMĚNIT %%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\cvut}{České vysoké učení technické v~Praze}
+\newcommand{\fjfi}{Fakulta jaderná a fyzikálně inženýrská}
+\newcommand{\kse}{Katedra matematiky}
+\newcommand{\obor}{Aplikovaná informatika}
+\newcommand{\zamereni}{}
+
+\newcommand{\nazevcz}{Návrh informačního systému pro podporu forenzního auditu}        % zde VYPLŇTE český název práce (přesně podle zadání!)
+\newcommand{\nazeven}{Design of an Information System for Support of Forensic Audit}     % zde VYPLŇTE anglický název práce (přesně podle zadání!)
+\newcommand{\autor}{Edita Pešková}           % zde VYPLŇTE své jméno a příjmení
+\newcommand{\rok}{2015}                % zde VYPLŇTE rok odevzdání, např. 2006
+\newcommand{\vedouci}{Mgr. Karel Macek, Ph.D.}         % zde VYPLŇTE jméno a příjmení vedoucího práce, včetně titulů
+                                                               % např. Doc. Ing. Ivo Malý, Ph.D.
+\newcommand{\pracovisteVed}{Oddělení ekonometrie, Ústav teorie informace a automatizace} % zde VYPLŇTE pracoviště vedoucího práce, je-li jiné než KSE FJFI ČVUT
+
+\newcommand{\konzultant}{---} % POKUD MÁTE určeného konzultanta, NAPIŠTE jeho jméno a příjmení
+\newcommand{\pracovisteKonz}{} % POKUD MÁTE konzultanta, NAPIŠTE jeho pracoviště
+
+
+\newcommand{\klicova}{Forenzní audit, Vyšetřování, Návrh systému, Databáze, Sběr dat}  
+\newcommand{\keyword}{Forensic audit, Investigation, System design, Database, Data collection}    
+\newcommand{\abstrCZ}{%zde NAPIŠTE abstrakt v češtině
+Tato bakalářská práce předkládá návrh systému a naznačuje požadavky, které jsou potřebné aby byl popsán smysl a cíle technik digitálního forenzního vyšetřování, vykonávaných forenzními auditory, účetními a inpektory firem. 
+
+Pomocí různorodých postupů, nástrojů a technik rozpoznáváme v jakých případech mohou nástroje forenzního auditu poskytnout auditorům potřebné informace k~provedení forenzního auditu. Bakalářská práce představuje požadavky, které musí splňovat vlastní informační systém použitelný pro podporu vyšetřování a také poskytuje detailní návrh tohoto systému. 
+} 
+\newcommand{\abstrEN}{     %              zde NAPIŠTE abstrakt v angličtině
+This bachelor project proposes a system design and suggests requirements that are needed in order to describe the purpose and goals of the digital forensic investigation techniques carried out by the forensic auditors, accountants and examiners of companies. Using various procedures, tools and techniques we identify where the forensic audit tools and the system can provide the auditors necessary information to carry out forensic audit. This bachelor thesis provides requirements that our own information system usable to support forensic audit must follow and also provides a detailed design of this system. 
+}
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%% 1. strana -- na následujících 30 řádků NESAHEJTE!!!  Generuje se AUTOMATICKY %%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+
+\begin{center}
+    {\Large \bf \cvut\\[2mm] \fjfi }
+    \vspace{10mm}
+
+    \begin{tabular}{c}
+    {\bf \kse}\\
+    {\bf Obor: \obor}\\
+    %{\bf Zaměření: \zamereni}
+    \end{tabular}
+
+   % logo CVUT -- pokud jej nechcete použít, zakomentujte následující řádek a odkomentujte řádek pod ním:
+   \vspace{10mm} \epsfysize=25mm \epsffile{cvut-logo-bw.eps} \vspace{15mm}
+   \vspace{50mm}
+
+   {\Huge \bf \nazevcz \par \nazeven\par}
+
+   \vspace{15mm}
+   {\Large BAKALÁŘSKÁ PRÁCE}
+
+   \vfill
+   {\large
+    \begin{tabular}{rl}
+    Vypracoval: & \autor\\
+    Vedoucí práce: & \vedouci\\
+    Rok: & \rok
+    \end{tabular}
+   }
+\end{center}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%% 2. strana: zadání práce  %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%            Před svázáním namísto této strany VLOŽÍTE zadání podepsané děkanem!
+\newpage  % SEM NESAHEJTE!
+\thispagestyle{empty} Před svázáním místo téhle stránky \fbox{vložíte zadání práce} s podpisem
+děkana (bude to jediný oboustranný list ve Vaší práci) !!!!
+
+
+
+%%%%%%%%%%%%%%%%%%%%%% 3. strana: prohlášení -- ŽENY UPRAVÍ minulý čas sloves %%%%%%%%%%%%%%%%%%%%%%
+\newpage % SEM NESAHEJTE!
+\thispagestyle{empty}  % SEM NESAHEJTE!
+
+~ % SEM NESAHEJTE!
+\vfill % prázdné místo. SEM NESAHEJTE!
+
+{\bf Prohlášení} % SEM NESAHEJTE!
+
+\vspace{0.5cm} % vertikální mezera. SEM NESAHEJTE!
+Prohlašuji, že jsem svou bakalářskou práci vypracovala samostatně a použila jsem pouze podklady
+(literaturu, projekty, SW atd.) uvedené v přiloženém seznamu.
+
+\vspace{5mm}V Praze dne ....................\hfill   % SEM NESAHEJTE!
+    \begin{tabular}{c}                               % SEM NESAHEJTE!
+    ........................................\\       % SEM NESAHEJTE!
+    \autor                                           % SEM NESAHEJTE!
+    \end{tabular}                                    % SEM NESAHEJTE!
+
+
+
+%%%%%%%%%%%%%%%%%%%%%% 4. strana: poděkování -- UPRAVTE JMÉNO, resp. tuto stránku celou VYMAŽTE %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%                           (poděkování nemusí být uvedeno vůbec)
+\newpage
+\thispagestyle{empty}
+
+~
+\vfill % prázdné místo
+
+{\bf Acknowledgement }
+
+\vspace{5mm} % vertikální mezera
+%Děkuji \todo %Ing. Eleonoře Krtečkové, Ph.D. za vedení mé bakalářské práce a za podnětné návrhy, které ji obohatily.
+
+I wish to thank to my supervisor for his inspiring feedback, my family for their patience and support in my studies and anyone who encouraged me in this project. 
+
+\begin{flushright}
+\autor
+\end{flushright}  % <------- tady končí stránka s poděkováním
+
+
+
+%%%%%%%%%%%%%%%%%%%%%% 5. strana: abstrakt atp. Je generován AUTOMATICKY podle údajů na začátku souboru) %%%%%%%%%%%%%%%%%
+\newpage   % SEM NESAHEJTE!
+\thispagestyle{empty}   % SEM NESAHEJTE!
+
+% příprava:    (na následujících 8 řádků NESAHEJTE!)
+\newbox\odstavecbox
+\newlength\vyskaodstavce
+\newcommand\odstavec[2]{%
+    \setbox\odstavecbox=\hbox{%
+         \parbox[t]{#1}{#2\vrule width 0pt depth 4pt}}%
+    \global\vyskaodstavce=\dp\odstavecbox
+    \box\odstavecbox}
+\newcommand{\delka}{120mm} % šířka textů ve 2. sloupci tabulky
+
+% použití přípravy:    % dovnitř "tabular" vůbec NESAHEJTE!
+\begin{tabular}{ll}
+  {\em Název práce:} & ~ \\
+  \multicolumn{2}{l}{\odstavec{\textwidth}{\bf \nazevcz}} \\[5mm]
+  {\em Autor:} & \autor \\[5mm]
+  {\em Obor:} & \obor \\
+  {\em Druh práce:} & Bakalářská práce \\[5mm]
+  {\em Vedoucí práce:} & \odstavec{\delka}{\vedouci \\ \pracovisteVed} \\[5mm]
+  {\em Konzultant:} & \odstavec{\delka}{\konzultant \\ \pracovisteKonz} \\[5mm]
+  \multicolumn{2}{l}{\odstavec{\textwidth}{{\em Abstrakt:} ~ \abstrCZ \\ }} \\[5mm]
+  {\em Klíčová slova:} & \odstavec{\delka}{\klicova} \\[20mm]
+
+  {\em Title:} & ~\\
+  \multicolumn{2}{l}{\odstavec{\textwidth}{\bf \nazeven}}\\[5mm]
+  {\em Author:} & \autor \\[5mm]
+  \multicolumn{2}{l}{\odstavec{\textwidth}{{\em Abstract:} ~ \abstrEN \\ }} \\[5mm]
+  {\em Key words:} & \odstavec{\delka}{\keyword}
+\end{tabular}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%% 6. strana: obsah práce ... je generován AUTOMATICKY %%%%%%%%%%%%%%%%%%%%%%
+\newpage  % SEM NESAHEJTE!
+\setcounter{page}{1}
+\tableofcontents % SEM NESAHEJTE!
+
+%%%%%%%%%%%%%%%%%%%%%%  7.strana: zde začíná SAMOTNÁ PRÁCE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                 - text se vkládá Z EXTERNÍCH SOUBORŮ
+%                                   (můžete ho také napsat přímo sem => smažte každé \input{...})
+\newpage % SEM NESAHEJTE!
+
+\input{kapitoly/kapitoly.tex}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%  Seznam použitých zdrojů  %%%%%%%%%%%%%%%%%%%%%%
+\newpage  % SEM NESAHEJTE!
+\renewcommand{\bibname}{Bibliography} % SEM NESAHEJTE!
+\addcontentsline{toc}{chapter}{Bibliography} % SEM NESAHEJTE!Seznam použitých zdrojů
+
+% !!! Literatura se řadí abecedně.
+%\input{vnitrek_literatura.tex}  % text, který je vkládán z jiného souboru, MŮŽETE ZMĚNIT NÁZEV souboru nebo smazat tento řádek a seznam literatury napsat přímo sem
+
+\bibliographystyle{plain}
+\bibliography{literatura}
+
+
+
+\newpage % SEM NESAHEJTE!
+%%%%%%%%%%%%%%%%%%%%%%  PŘÍLOHY PRÁCE %%%%%%%%%%%%%%%%%%%%%%
+%\appendix  % přílohy budou opravdu "Přílohy"  :-)     SEM NESAHEJTE!
+%\addcontentsline{toc}{chapter}{Attachment} % přidat položku do obsahu      SEM NESAHEJTE!
+
+%\part*{Attachment}  % SEM NESAHEJTE!
+\input{attachment.tex}
+\renewcommand{\appendixname}{Attachment} % aby se přílohy nejmenovaly "Dodatek"  SEM NESAHEJTE!
+
+%-------- zde VYMĚŇTE NÁZVY vkládaných souborů NEBO sem můžete rovnou napsat text příloh (a smažte dva následující řádky)
+%\input{vnitrek_priloha1.tex} % příloha 1: vložená z externího souboru
+%\input{vnitrek_priloha2.tex} % příloha 2: vložená z externího souboru
+
+\end{document} % SEM NESAHEJTE!
