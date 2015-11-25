@@ -1,22 +1,21 @@
+\newcommand{\komentar}[1]{{\leavevmode\color[rgb]{1.0, 0.13, 0.32}#1}}
+\newcommand{\sediva}[1]{{\leavevmode\color[rgb]{0.5, 0.5, 0.5}#1}}
+
 \setcounter{chapter}{0}
 \setcounter{section}{1}
  
 \addcontentsline{toc}{chapter}{Introduction} % SEM NESAHEJTE!
 \input{kapitoly/01Introduction.tex}
 
-\textcolor{gray!55!white}{ \blindtext}
-\textcolor{gray!55!white}{ \blindtext}
-
+\sediva{ \blindtext}
+\sediva{ \blindtext}
 
 \chapter*{Forensic audit and its computer support}
-\section*{Forensic audit}
-\subsection*{Definition}
-- zde v hrubych rysech jak to probiha (to co uz mam sem patri), na zaklade toho, co jsem zjistila FA funguje takto:...
-\subsection*{use case diagram}
-Velky obrazek vsech zainteresovanych stran
+\input{kapitoly/chapter_Forensic_audit_and_its_computer_suport.tex}
+
 
 \chapter*{Navrzena (uvazovana) metodika}
-Jsem si vedoma, ze jsem clovek, ktery to nikdy nedelal (= omezena znalost).
+\komentar{Jsem si vedoma, ze jsem clovek, ktery to nikdy nedelal (= omezena znalost).
 Toto je jak to chapu. Toto neni jak by to nekdo mel delat. Toto je seriozni pokus popsat proces forenzniho auditu.
 PROCESNI DIAGRAMY!!!
 
@@ -24,7 +23,7 @@ vystupem = okomentovany obrazek, ktery dava hlavu a patu
 
 a Use case diagrammem pak kontaktovat praxi
 
-
+}
 
 
 

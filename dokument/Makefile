@@ -10,6 +10,7 @@
 #
 
 all: prace.pdf
+	epdfview prace.pdf
 
 # LaTeX je potreba spustit dvakrat, aby spravne spocital odkazy
 prace.pdf: $(wildcard *.tex)
