@@ -1,6 +1,6 @@
 \newcommand{\komentar}[1]{{\leavevmode\color[rgb]{1.0, 0.13, 0.32}#1}}
 \newcommand{\sediva}[1]{{\leavevmode\color[rgb]{0.5, 0.5, 0.5}#1}}
-\newcommand{\dotaz}[1]{{\leavevmode\color[rgb]{0.0, 0.5, 1.0}DOTAZ:#1\\}}
+\newcommand{\dotaz}[1]{{\leavevmode\color[rgb]{0.0, 0.5, 1.0}DOTAZ: #1\\}}
 \newcommand*{\anglictina}[1]{\noindent\colorbox{green!30}{\parbox{0.98\linewidth}{\textcolor{green!80}{AJ }#1\\}}}
 
 %{\parbox{0.98\linewidth}
@@ -25,17 +25,45 @@ PROCESNI DIAGRAMY!!!
 
 vystupem = okomentovany obrazek, ktery dava hlavu a patu
 
-a Use case diagrammem pak kontaktovat praxi
+s Use case diagrammem pak kontaktovat praxi
 
 }
+
+
+\colorbox{green}{\komentar{ timhle diagramem bude problem, budu ho muset prinutit aby se rozdelil na vic stran}}
+
+\begin{figure}[h]
+	\begin{center} 
+	%\missingfigure{Velky obrazek vsech zainteresovanych stran - f.auditor, datovy analytik pro FA, zakaznik (zadavatel, materska spolecnost)}
+	\includegraphics[width=1.0\textwidth]{img/metodika/Metodologie_forenzniho_auditu.pdf}
+	\end{center}
+	\caption{\komentar{Metodika v ARISu}}
+\end{figure}
+
+
 
 \chapter{}
 \komentar{
 tato kapitola by asi mela obsahovat oduvodnene pozadavky na vlastni metodiku, pouzitelnou ve FA s ohledem na ostatni pristupy a metodiky
 }
 
-\dotaz{co jsou osatni pristupy a metodiky?}
-\dotaz{jaky je rozdil mezi metodikou, kterou uz mam vytvorenou v arisu a touto vlastni metodikou?}
+\komentar{jaky je rozdil mezi metodikou, kterou uz mam vytvorenou v arisu a touto vlastni metodikou?-> je to totez}
+
+\komentar{
+\section{Pribuzne metodiky}
+}\komentar{\subsection{  Obecny project management (zde je projektem FA projekt)}
+\sediva{\blindtext}
+}\komentar{\subsection{ Obecne zpracovani objednavky (zde je objednavkou FA projekt)}
+}\sediva{\blindtext}
+\komentar{\section{Specificke pozadavky pro FA}
+}\sediva{\blindtext}
+\komentar{\subsection{  Zohledneni rizik}
+}\sediva{\blindtext}
+\komentar{\subsection{ Zohledneni ruznych dat}
+}\sediva{\blindtext}
+\komentar{\subsection{Zohledneni ruznych zpusobu zpracovani a intepretace dat}
+}\sediva{\blindtext}
+
 
 
 \chapter{Design of an information system for support of forensic audit}
