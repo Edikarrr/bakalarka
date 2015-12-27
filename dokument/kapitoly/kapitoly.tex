@@ -23,27 +23,7 @@
 \input{kapitoly/Original_methodology.tex}
 
 
-\chapter{}
-\komentar{
-tato kapitola by asi mela obsahovat oduvodnene pozadavky na vlastni metodiku, pouzitelnou ve FA s ohledem na ostatni pristupy a metodiky
-}
-
-\komentar{jaky je rozdil mezi metodikou, kterou uz mam vytvorenou v arisu a touto vlastni metodikou?-> je to totez}
-
-\komentar{
-\section{Pribuzne metodiky}
-}\komentar{\subsection{  Obecny project management (zde je projektem FA projekt)}
-\sediva{\blindtext}
-}\komentar{\subsection{ Obecne zpracovani objednavky (zde je objednavkou FA projekt)}
-}\sediva{\blindtext}
-\komentar{\section{Specificke pozadavky pro FA}
-}\sediva{\blindtext}
-\komentar{\subsection{  Zohledneni rizik}
-}\sediva{\blindtext}
-\komentar{\subsection{ Zohledneni ruznych dat}
-}\sediva{\blindtext}
-\komentar{\subsection{Zohledneni ruznych zpusobu zpracovani a intepretace dat}
-}\sediva{\blindtext}
+\input{kapitoly/chapter3.tex}
 
 
 
@@ -59,14 +39,16 @@ jedna se o aplikaci, ktera provazi celym projektem (zadanim) forenzniho auditu. 
 
 }
 
+\input{kapitoly/04SystemRequirements.tex}
+\input{kapitoly/05Design.tex}
 
 \chapter{Discussion}
 \komentar{
 	\section{Further improvements}
 \begin{itemize}
 	\item pokryt dalsi administrativni casti (zacatek, konec)
-	\item detailnejsi navrh a implementace
-	\item detailnejsi osetreni rizik
+	\item detailnejsi navrh a implementace modulu
+	\item detailnejsi osetreni rizik (napriklad zastreleny auditor)
 	\item zamysleni nad sdilenim zkusenosti (duvernost vs. rust expertyzy auditorske spolecnosti)
 	\item vyuziti mimo FA - jina administrativa + moduly pro vyuziti policii / soudy
 \end{itemize}
