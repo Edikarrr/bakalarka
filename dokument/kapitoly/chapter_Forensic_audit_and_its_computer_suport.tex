@@ -12,7 +12,7 @@ This chapter strives to define and explain the meaning of the term "forensic aud
 %\komentar{nelibi se mi, pridat do jinych casti a zrusit}
 %Forensic audit is a specialization within a field of accounting that examines and evaluates evidence concerning unproven statements for possible use as evidence in court. Forensic audit is usually used in case there is a suspicion in certain company there is a crime being committed. The background of the investigated case is rather diverse. A customer can be, for example, a CEO  who wants to examine the functioning of one of the sub-divisions of a controlling company. There can be a suspicion of some fraudulent activity or the need of forensic audit can be closely unspecified.
 
-\section{Definition of forensic audit}
+\section{Definition of forensic audit}\label{FA_definition}
 The term "forensic" can be defined in multiple ways. According to merriam-webster dictionary \komentar{citace http://www.merriam-webster.com/dictionary/forensic} the definition is "relating to the use of scientific knowledge or methods in solving crimes". The term "audit" is explained in the same dictionary as "a complete and careful examination of the financial records of a business or person". \komentar{citace http://www.merriam-webster.com/dictionary/audit}
 
 The essence of forensic audit is to discover and investigate fraudulent intentions and fraudulent behavior. 
@@ -29,13 +29,48 @@ On the other hand the ultimate goal of forensic audit is to examine existing or 
 %=============================ze stare BP========================================
 \section{Types of investigation}
 
-The range of types of situation that forensic auditor can be asked to investigate is really wide. Basically any kind of suspicion on potentially bad behavior can be an impulse for investigation. However, not all kinds of crimes are of our interest. 
+The range of types of situation that forensic auditor can be asked to investigate is really wide. Basically any kind of suspicion on potentially bad behavior can be an impulse for investigation. However, not all kinds of crimes are of our interest. For example violent crimes, cash theft, assault, robbery, rape, actual bodily harm and similar crimes are part of a detective work. Forensic auditors typically do not deal with such crimes. 
+
+On the contrary, fraudulent crimes are those ideally fitting for forensic investigation. There are many different kinds of fraud that forensic auditors deal with. To provide an overview of the wide range, these frauds can be classified into following three groups: corruption, asset misappropriation and financial statement frauds. These frauds are the most frequently investigated scenarios.
+
+\paragraph {Corruption}
+Corruption can be characterized as a misuse of status. The motivation behind corruption is a desire to gain money, material possession or other advantages. By extension an involvement in a corruption relationship is a sign of moral and ethical failure of individuals. Several specific kinds of corruption are bribery, acceptance of a bribe, extortion, misuse of power, misuse of information or conflicts of interest. Research shows that corruption is involved in around one third of all frauds. \komentar{[citace Weaver]}
+
+\paragraph{Bribery} is an unauthorized advantage in form of recipient's behavior alternation in exchange for money, goods or other forms of recompense. On contrary to bribery extortion occurs when money or some action is demanded in order to secure particular outcome. Conflict of interest and misuse of power or information can be categorized in one group. In such situations fraudsters use their power to achieve personal profit without regard to their position responsibility. Consequently their behavior negatively influences the company which is giving them their power. For example a manager of local division of a company choose his friend to be the paper supplier even though that his price is significantly much higher than the price of other paper suppliers.
 
 
-druhy zlocinu obecne
-ktere z nich forenzni audit neresi
-ktere z nich se jako pripady FA vyskytuji casteji
-=>fraud
+\paragraph {Asset misappropriation}
+is the theft or embezzlement of company assets by directors, other fiduciaries or employees. Is by far the most common economic crime experienced by organizations reporting any fraud, with 69\% of respondents suffering from it. \komentar{[citace http://www.pwc.com/gx/en/services/advisory/consulting/forensics/economic-crime-survey/economic-crimes/asset-misappropriation.html]} It happens when people who are entrusted to manage the assets of an organization steal from it. The stealing usually starts small and when perpetrators gain their confidence it becomes bigger. In consequence of this asset misappropriation can be a serious problem and can cause immense losses. 
+
+The specific kinds are cash theft, inventory theft or using company assets for personal purpose. Special sort of asset misappropriation is fraudulent disbursement, i.e. for example fictional billing or raising an invoice that is not in compliance with the field of the supplier's enterprise. An interesting particularity is that asset misappropriation is far more likely to be committed by individuals than by a group of perpetrators.\komentar{citace http://www.theifp.org/research-grants/IFP-Whitepaper-5.pdf}
+
+
+\paragraph {Financial statement fraud}
+This kind of fraudulent activity is based on deliberate falsification of accounting records. It can include manipulation with expenses, manipulation of revenue figures, overstating assets or improper disclosure. This is regularly done to give the budgetary proclamations a specific inclination, for instance covering liabilities to enhance any examination of liquidity.
+
+%====================================================================================
+\section{Specializations in forensic audit}
+The definition of forensic audit has already been stated in \ref{FA_definition}. However, there are several related specializations that can also be useful to know when dealing with this field.
+
+\paragraph{Forensic Sciences} methodologically correctly apply broad spectrum of scientific disciplines in order to answer questions relevant to legal system. \komentar{[citace karin franke prednasky]} An aggregate of these sciences is sometimes also called simply forensics. Forensics is mainly used to deal with previously committed crimes or to prevent similar crimes from happening.
+
+
+\begin{figure}[h]
+	\begin{center} 
+	%\missingfigure{Obrazek demonstrujici forenzni audit.}
+	\includegraphics[width=0.4\textwidth]{img/forensic_science.pdf}
+	\end{center}
+	\caption{Forensic sciences}
+\end{figure}
+
+
+\paragraph{Computer (Digital) Forensics} is a discipline that studies digital evidence. It is used for recording, safeguarding, extraction and documentation of evidence from various kinds of hardware. Digital evidence sources are all kinds of digital equipment that is able to store usable pieces of information. These can be for instance computers, mobile devices, phones, deleted files, (surveillance) cameras, PDAs, copy machines etc..  Examples of digital forensics subbranches are mobile forensics, life-system forensics, file-system forensics, network forensics, multimedia forensics.  
+
+\paragraph{Computational Forensics} is an research domain that uses the means of computational methods to study any kind of evidence. Computational forensics involves modeling, computer-based analysis, computer simulations etc.. This specialization uses methods such as machine learning, data mining, image processing, statistical pattern recognition, fuzzy logic or data visualization to discover any hidden forensic knowledge. 
+
+\paragraph{} The subbranches of digital forensics as well as the specializations of computational forensics play their own part in the investigation of complex cases. They are used to provide intermediate results for the investigation by answering closely specified questions. Some of these methods can also be used indirectly as functionalities provided by a software that is used in the investigation.  
+
+\komentar{
 
 jine souvisejici oblasti forenzniho auditu
 - specializace jako digital forensis etc.
@@ -44,35 +79,38 @@ obnova dat - cesnet-man prednaska
 (=> mohou se vyskytovat i dilci zakazky, kde se nezkouma komplexni situace ale napriklad jen obnovuji dulezita data, nebo analyzuji jednodussi pripady)
 
 
-co nas zajima nejvice
+co nas zajima - situace, kde je vhodne uvazovat pocitacovou podporu
+pocitacova podpora muze mit mnoho druhu-
+vyuzivani konkretniho SW 
+	analyticky, 
+	statisticky, 
+	podpora projektoveho managementu
+	nastroje na sdileni informaci pri praci na projektu
+vyuzivani nekterych obecnych principu 
+	ctj. fuzzy logika,
+		
+	ctj data mining
+		analyzovani zaznamu konverzaci,
+		analyzovani vztahu mezi lidmi / chovani 
+	strojove uceni?
+	tyto principy mohou byt zakomponovane v nekterych konkretnich SW nastrojich vyse
+vyuzivani konkretnich znalosti v pripade ziskavani dat z hw
+	znalosti o fungovani operacnich systemu obecne
+	znalosti o sitich
+	konkretni znalosti o ukladani dat na disk
+	tyto veci mohou slouzit jako nastroje na ziskani dukazu.
+
+zdroje dat / dukazu
+	zpracovatelne pomoci pocitace
+		vypisy z uctu/ ucetnictvi, verejne databaze vlastnictvi, socialni site, elektronicka komunikace z dostupnych zdroju, znalosti / fakta o konktetnich osobach...
+	nezpracovatelne pomoci pocitace, nebo vyuzivajici specificke principy sveho vlastniho oboru
+		tady myslim sbirani otisku prstu a podobne oblasti, ktere resi specialiste
 
 
 
+}
 
 
-
-
-
-
-
-The forensic auditor could be demanded to examine various sorts of fraud. To analyze the extensive area of examinations that could be completed, these sorts of fraud can be classified into three categories. The first category containing frauds such as conflict of interest, extortion or bribery. Approximately one third of fraudulent activities is somehow connected to corruption.In the second category we can find acts of cash theft, fraudulent disbursement or misuse of assets. This category can be generally called asset misappropriation and activities related to it are actually the most common frauds. All financial statement frauds may be considered as the third separate category, including all the deliberate misinterpretation of financial reporting standards or manipulation with obligations to improve analyses of liquidity. 
-
-
-
-\subsection{Asset misappropriation}
-Clearly the most widely recognized frauds are those including resource misappropriations and there are various sorts of misrepresentation which fall into this classification. The basic element is the burglary of money or different resources from the organization, for instance: 
-
-\begin{itemize}
-\item Cash burglary – the taking of physical money, for instance insignificant amount of money, from the premises of an organization.
-\item Fraudulent payment – organization trusts being utilized to make fake installments. Regular illustrations incorporate charging plans where installments are made to an imaginary supplier and finance plans where installments are made to invented workers that are frequently known as 'apparition representatives'.
-\item Inventory replicas – the robbery of stock from the organization. 
-\item Misuse of benefits – representatives utilizing organization resources for their own interest.
-\end{itemize}
-
-
-\subsection{Financial statement fraud}
-
-This is deceitful money related reporting, and is a kind of misrepresentation that causes a material misquote in the budgetary proclamations. It can incorporate planned distortion of bookkeeping records; exclusion of exchanges, equalizations or exposures from the budgetary explanations; or the misuse of money-related reporting guidelines. This is regularly done with the goal of giving the budgetary proclamations a specific inclination, for instance covering liabilities to enhance any examination of liquidity.
 %============================^ze stare BP^=======================================
 
 
@@ -88,7 +126,9 @@ Next step is to formulate properly the assignment. To define the extent and expe
 
 When a client contacts an audit company with an assignment they usually schedule a meeting together, formulate sign and accept the assignment. The ordering party should be prepared to provide access to corresponding electronic and paper-like documentation as well as accept the fact that auditors are going to question employees and case-related person. On the other hand the audit company undertakes to refrain from sharing all the confidential information with third parties.A team of specialists that are convenient to the assignment is formed and the inspection is launched. 
 
-The following steps of the precise method of forensic audit are not definite. The ability to adapt in new situations is one of many essential capabilities for the team of forensic auditors. The variety of investigated cases is so vast that there is no universally valid and precise course of action in the same time. Therefore on this place we present only general methodology of forensic audit. Several selected methods of forensic audit will be described later in this document. \komentar{link na spravne misto!}
+In some cases the extent of the order is quite complex such as investigation of processes in one separate division of a company or investigation of complex corruption crimes. Nevertheless there may also be much easier cases where the audit firm is asked only to recover certain documents, or to examine particular piece of hardware. 
+
+The following steps of precise methods of forensic audit are not definite. The ability to adapt in new situations is one of many essential capabilities for the team of forensic auditors. The variety of investigated cases is so vast that there is no universally valid and precise course of action in the same time. Therefore on this place we present only general methodology of forensic audit. Several selected methods of forensic audit will be described later in this document. \komentar{link na spravne misto!}
 
 \section{General methodology of forensic audit}
 In this section we present basic phases that are used while performing forensic audit. This process is most commonly divided into four stages: Accumulation, Examination, Analysis and Reporting. This basic methodology starts after the  selection of the audit company and after the specification of the assignment; at the same time when the real work of forensic auditors begins.
@@ -98,7 +138,7 @@ In this section we present basic phases that are used while performing forensic 
 	%\missingfigure{Obrazek demonstrujici forenzni audit.}
 	\includegraphics[width=1.0\textwidth]{img/general_methodology.pdf}
 	\end{center}
-	\caption{\komentar{General methodology of forensic audit}}
+	\caption{General methodology of forensic audit}
 \end{figure}
 
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
