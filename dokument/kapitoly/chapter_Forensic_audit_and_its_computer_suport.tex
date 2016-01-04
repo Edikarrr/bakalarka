@@ -42,105 +42,46 @@ The definition of forensic audit has already been stated in \ref{FA_definition}.
 
 Sources of digital evidence are all kinds of digital equipment that is able to store usable pieces of information. These can be not only computers, mobile devices, (smart) phones, (surveillance) cameras, PDAs etc. but also for instance copy machines, cars, washing machines or houses. This is a correlative of the Internet of Things (IoT) which is a currently emerging trend in technology. Common digital data used as a environment to search for evidence is for example disk image of a device, a memory image of a device, NetFlow data, complete network communication, or even parts of log gained from the service provider. 
 
-Digital data is created mostly when working with the digital equipment. While using the memory programs regularly leave
+Digital data is created mostly when working with the digital equipment. While using the memory programs regularly leave trace such as variables, the code and input/output data. The user also saves various kinds of data when saving documents sending emails etc.. This kind of data stays in the memory and can be the source of evidence. For example, it is possible to trace sending an email at several instances such as in the browser, on the web page presence of an attachment is recognizable, the email is traveling via the network and the provider running the service has a log about the email. Having adequate authorization, such as the police has, it is possible to request the record about the activity from the provider.
 
+There are several groups of data in computer memory. Volatile data is temporary data that is not permanently saved. User available data, typically files are called active data. Meta-data is the information about data. It typically consists of information about the format of data, the time of creation etc.. Lets take meta-data of a picture as an example, there can be the time set in the device when creating the picture, information about the location, the focus distance, the exact name of the camera and possibly other details. Similarly in case of an document the information about the time and the user who created the document can be found in the meta-data of the data. Another type of data is system logs, where for example an information about how the system is running is provided. The purpose of these logs is to make the diagnosis of potential problem easier to find and resolve. Among other things the system log monitors the activity of the user. Temporary files are files providing auxiliary space. Typically they are named with the .tmp suffix and are used for saving intermediate results. Another type of data that can be found in computer memory is residual data. It is in fact the listing of the memory. All the unallocated memory, parts of files, deleted but not overwritten files and other pieces of memory.
 
+%To be able to analyze the meaning of the data we need tho know their format.
 
-\paragraph{Digital data}
- Nowadays almost every digital equipment is possible source of evidence. Examlpe
+Forensic analysis of digital data is deals with searching for evidence in the field of information technology, their interpretation and presentation. The basic requirements are to discover the desired evidence in a way that the methods are repeatable and the results are unquestionable. Forensic analysis always adopts an unbiased stance on the result.
 
-%====================================================================================
-\komentar{
-
-co to je
-	digitalni data negeneruji pouze pocitace a internet, ale v dnesni dobe uz temer vsechna digitalni zarizeni. chytre telefony, tablety, domy, auta, pracky. v dnesni dobe se rozviji se tzv internet veci
-	
-	bezna digitalni data:
-	obraz disku zarizeni, obraze pameti zarizeni, informace o sitovem provozu (NetFlow data), sitovy provoz (kompletni komunikace), informace od provozovatele sluzby(cast logu)
-	
-jak to vznika
-	generuji se pri praci s temato zarizenimi. programy zanechavaji v pameti stopy pri behu ( promenne, kod, vstupne vystupni data), uzivatel uklada ruzne druhy dat (ulozeni dokumentu, odeslani emailu). data zaznamenavajici interakci s okolim. tato data zustavaji uvnitr zarizeni a jsou v dusledku zdrojem dukazu.
-	
-	priklad - odeslani emailu: stopu v pocitaci: prohlizec, webova stranka, je rozpoznatelna pritomnost  prilohy, email putujici siti a log u provozovatele sluzby. S dostatecnyn opravnenim (napr policie) je mozne vyzadat od poskytovatele sluzby zaznam o dane aktivite.
-	
-skupiny dat
-	volatile - existuji pouze po dobu chodu zarizeni
-	active - uzivatelsky dostupne - soubory 
-	metadata - informace o datech - pouzity format, cas vytvoreni... priklad fotografie - cas zarizeni, kde vyfoceno, ohniskova vzdalenost, jak se jmenuje fotak atd. . priklad dokument - kdo dokument napsal, kdy byl vytvoren atd.
-	systemove logy - jak zarizeni funguje aby bylo monze diagnostikovat problem, kdo se kdy prihlasil, 
-	docasne soubory - typicky se jmenuji .tmp pomocny prostor, ukladani mezivysledku
-	rezidualni data - vypis pameti - nealokovana pamet, casti souboru, smazane neprepsane soubory, casti souboru, kusy pameni
-	
-na zjisteni vyznamu dat je potreba znat jejich format. 
-
-analyza dat - forenzni analyza se zabyva zjistenim dukaznich materialu v oblasti IT, jejich interpretaci a prezentaci. 
-
-pozadavky: zjistit pozadovane informace, nezpochybnitelnost zaveru, oprakovatelny postup, neutralni pohled
-
-
-postup: extrahovat data - bitova kopie, pokud pracujeme s orignalnim zarizenim, je potreba dokumentovat veskery posutp aby bylo dohledatelne, ktere zmeny jsme udelali napriklad pri extrahovani dat. kontrola autenticity pomoci hashe abychom si mohli byt jisty ze data nebyla zmenena
-
-tato primarni data = "best evidence"
-
-analyza dokumentace vychoziho stavu!, co mame najit? kde mame najit? do kdy to mame najit?
-neni univerzalni postup
-data carving, predzpracovani dat
-
-znalosti nastroju +znalosti fungovani systemu
-
-interpretace vyhsledku - casova osa
-
- 
-	
-	
-zminit jak se obecne obnovuji data? (princip)}
-
+When preparing the data for analysis first the data is extracted from the device. This extracted data is also called "best evidence." Immediately after that the data is hashed and another copy of the data is made for processing purposes. This is important in case that while processing the data some change is made in the working copy we can always easily check the hash to verify we have the right data. While extracting it is important to document the procedure of extraction. It is possible, for example, to add a new entry to a log file, but it must be well documented to prevent any future mistake.
 
 
 %====================================================================================
-\paragraph{Computational Forensics} is an research domain that uses the means of computational methods to study any kind of evidence. Computational forensics involves modeling, computer-based analysis, computer simulations etc.. This specialization uses methods such as machine learning, data mining, image processing, statistical pattern recognition, fuzzy logic or data visualization to discover any hidden forensic knowledge. 
-
-\paragraph{} The subbranches of digital forensics as well as the specializations of computational forensics play their own part in the investigation of complex cases. They are used to provide intermediate results for the investigation by answering closely specified questions. Some of these methods can also be used indirectly as functionalities provided by a software that is used in the investigation.  
-
+%\komentar{
+%
+%postup: extrahovat data - bitova kopie, pokud pracujeme s orignalnim zarizenim, je potreba dokumentovat veskery posutp aby bylo dohledatelne, ktere zmeny jsme udelali napriklad pri extrahovani dat. kontrola autenticity pomoci hashe abychom si mohli byt jisty ze data nebyla zmenena
+%
+%tato primarni data = "best evidence"
+%
+%analyza dokumentace vychoziho stavu!, co mame najit? kde mame najit? do kdy to mame najit?
+%neni univerzalni postup
+%data carving, predzpracovani dat
+%
+%znalosti nastroju +znalosti fungovani systemu
+%
+%interpretace vyhsledku - casova osa
+%
+% 	
+%zminit jak se obecne obnovuji data? (princip)}
 %====================================================================================
 
+\subsection{Computational Forensics} is an research domain that uses the means of computational methods to study any kind of evidence. Computational forensics involves modeling, computer-based analysis, computer simulations etc.. This specialization uses methods such as machine learning, data mining, image processing, statistical pattern recognition, fuzzy logic or data visualization to discover any hidden forensic knowledge. 
 
-
-\section{Types of investigation}
-
-Forensic auditor can be asked to investigate really wide range of types of situations. Basically any kind of suspicion on potentially bad behavior can be an impulse for investigation. However, not all kinds of crimes are of our interest. For example violent crimes, cash theft, assault, robbery, rape, actual bodily harm and similar crimes are rather part of a detective work. Forensic auditors typically do not deal with such crimes. 
-
-On the contrary, fraudulent crimes are those ideally fitting for forensic investigation. There are many different kinds of fraud that forensic auditors deal with. To provide an overview of the wide range, these frauds can be classified into following three groups: corruption, asset misappropriation and financial statement frauds. These frauds are the most frequently investigated scenarios.
-
-\paragraph {Corruption}
-Corruption can be characterized as a misuse of status. The motivation behind corruption is a desire to gain money, material possession or other advantages. By extension an involvement in a corruption relationship is a sign of moral and ethical failure of individuals. Several specific kinds of corruption are bribery, acceptance of a bribe, extortion, misuse of power, misuse of information or conflicts of interest. Research shows that corruption is involved in around one third of all frauds. \cite{weaver}
-
-\paragraph{Bribery} is an unauthorized advantage in form of recipient's behavior alternation in exchange for money, goods or other forms of recompense. On contrary to bribery extortion occurs when money or some action is demanded in order to secure particular outcome. Conflict of interest and misuse of power or information can be categorized in one group. In such situations fraudsters use their power to achieve personal profit without regard to their position responsibility. Consequently their behavior negatively influences the company which is giving them their power. For example a manager of local division of a company choose his friend to be the paper supplier even though that his price is significantly much higher than the price of other paper suppliers.
-
-
-\paragraph {Asset misappropriation}
-is the theft or embezzlement of company assets by directors, other fiduciaries or employees. Is by far the most common economic crime experienced by organizations reporting any fraud, with 69\% of respondents suffering from it. \cite{pwc-asset} It happens when people who are entrusted to manage the assets of an organization steal from it. The stealing usually starts small and when perpetrators gain their confidence it becomes bigger. In consequence of this asset misappropriation can be a serious problem and can cause immense losses. 
-
-The specific kinds are cash theft, inventory theft or using company assets for personal purpose. Special sort of asset misappropriation is fraudulent disbursement, i.e. for example fictional billing or raising an invoice that is not in compliance with the field of the supplier's enterprise. An interesting particularity is that asset misappropriation is far more likely to be committed by individuals than by a group of perpetrators\cite{whitepaper}.
-
-
-\paragraph {Financial statement fraud}
-This kind of fraudulent activity is based on deliberate falsification of accounting records. It can include manipulation with expenses, manipulation of revenue figures, overstating assets or improper disclosure. This is regularly done to give the budgetary proclamations a specific inclination, for instance covering liabilities to enhance any examination of liquidity.
-
-%\section{When to use forensic audit}
-%\komentar{asi spis nez priklady popsat za jakych situaci...}
-%\sediva{\blindtext}
-\anglictina{dilci otazky}
-
-\paragraph{} Aside from investigations mentioned above forensics can be also used to help solving partial questions found in the process of investigation. Similarly in case of need to deal with partial issues such as file recovery a specialist in forensics might be asked for help.
-
-%====================================================================================
 
 
 \section{Selection of specific techniques or tools used in forensic audit}
 \paragraph {Data mining}
 
 \paragraph {Fuzzy logic}
+
+\cite{stoffel2010fuzzy}
 
 \paragraph {Machine learning}
 
@@ -188,6 +129,42 @@ zdroje dat / dukazu
 %================================================================================
 
 
+
+\paragraph{} The subbranches of digital forensics as well as the specializations of computational forensics play their own part in the investigation of complex cases. They are used to provide intermediate results for the investigation by answering closely specified questions. Some of these methods can also be used indirectly as functionalities provided by a software that is used in the investigation.  
+
+%====================================================================================
+
+
+
+\section{Types of investigation}
+
+Forensic auditor can be asked to investigate really wide range of types of situations. Basically any kind of suspicion on potentially bad behavior can be an impulse for investigation. However, not all kinds of crimes are of our interest. For example violent crimes, cash theft, assault, robbery, rape, actual bodily harm and similar crimes are rather part of a detective work. Forensic auditors typically do not deal with such crimes. 
+
+On the contrary, fraudulent crimes are those ideally fitting for forensic investigation. There are many different kinds of fraud that forensic auditors deal with. To provide an overview of the wide range, these frauds can be classified into following three groups: corruption, asset misappropriation and financial statement frauds. These frauds are the most frequently investigated scenarios.
+
+\paragraph {Corruption}
+Corruption can be characterized as a misuse of status. The motivation behind corruption is a desire to gain money, material possession or other advantages. By extension an involvement in a corruption relationship is a sign of moral and ethical failure of individuals. Several specific kinds of corruption are bribery, acceptance of a bribe, extortion, misuse of power, misuse of information or conflicts of interest. Research shows that corruption is involved in around one third of all frauds. \cite{weaver}
+
+\paragraph{Bribery} is an unauthorized advantage in form of recipient's behavior alternation in exchange for money, goods or other forms of recompense. On contrary to bribery extortion occurs when money or some action is demanded in order to secure particular outcome. Conflict of interest and misuse of power or information can be categorized in one group. In such situations fraudsters use their power to achieve personal profit without regard to their position responsibility. Consequently their behavior negatively influences the company which is giving them their power. For example a manager of local division of a company choose his friend to be the paper supplier even though that his price is significantly much higher than the price of other paper suppliers.
+
+
+\paragraph {Asset misappropriation}
+is the theft or embezzlement of company assets by directors, other fiduciaries or employees. Is by far the most common economic crime experienced by organizations reporting any fraud, with 69\% of respondents suffering from it. \cite{pwc-asset} It happens when people who are entrusted to manage the assets of an organization steal from it. The stealing usually starts small and when perpetrators gain their confidence it becomes bigger. In consequence of this asset misappropriation can be a serious problem and can cause immense losses. 
+
+The specific kinds are cash theft, inventory theft or using company assets for personal purpose. Special sort of asset misappropriation is fraudulent disbursement, i.e. for example fictional billing or raising an invoice that is not in compliance with the field of the supplier's enterprise. An interesting particularity is that asset misappropriation is far more likely to be committed by individuals than by a group of perpetrators\cite{whitepaper}.
+
+
+\paragraph {Financial statement fraud}
+This kind of fraudulent activity is based on deliberate falsification of accounting records. It can include manipulation with expenses, manipulation of revenue figures, overstating assets or improper disclosure. This is regularly done to give the budgetary proclamations a specific inclination, for instance covering liabilities to enhance any examination of liquidity.
+
+%\section{When to use forensic audit}
+%\komentar{asi spis nez priklady popsat za jakych situaci...}
+%\sediva{\blindtext}
+\anglictina{dilci otazky}
+
+\paragraph{} Aside from investigations mentioned above forensics can be also used to help solving partial questions found in the process of investigation. Similarly in case of need to deal with partial issues such as file recovery a specialist in forensics might be asked for help.
+
+%====================================================================================
 
 
 
