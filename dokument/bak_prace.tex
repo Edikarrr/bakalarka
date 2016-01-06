@@ -25,7 +25,7 @@
 \usepackage{todonotes}
 \usepackage{menukeys}
 \usepackage{fancyhdr}
-
+%\setlength{\headheight}{90pt} 
 
 \usepackage{hyperref}
 \hypersetup{pdftitle=Design of an Information System for Support of Forensic Audit}
@@ -244,11 +244,15 @@ I wish to thank to my supervisor for his inspiring feedback, my family for their
 %%%%%%%%%%%%%%%%%%%%%%  7.strana: zde začíná SAMOTNÁ PRÁCE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                 - text se vkládá Z EXTERNÍCH SOUBORŮ
 %                                   (můžete ho také napsat přímo sem => smažte každé \input{...})
-\newpage % SEM NESAHEJTE!{\rightmark}
+\newpage % SEM NESAHEJTE!
 
-\lhead{\nouppercase{\textit}} 
-\fancyfoot{}
-\pagestyle{fancy}
+%\lhead{\nouppercase{\textit{\rightmark}}} 
+%\fancyfoot{}
+%\pagestyle{fancy}
+
+\cfoot{\thepage}
+\lhead[\leftmark]{}
+\rhead[]{\leftmark}
 
 \input{kapitoly/kapitoly.tex}
 

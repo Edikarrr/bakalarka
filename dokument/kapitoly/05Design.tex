@@ -1,18 +1,32 @@
 % !TeX spellcheck = en_US
-\chapter{Design} \label {Design}
+%\chapter{Design} 
 %\section{Design of the data access}
 %\section{Filters}
 
+%=======================================================================
+\chapter{Design of an information system for support of forensic audit}\label {Design}
+%\komentar{
+%vsechno o tom systemu jako takovem, ale tak, aby to navazovalo na predchozi...?
+%
+%prostredi webu + silne zabezpeceni, reporty, export, pdf\\
+%maly informativni obrazek, ktery poskytne uzivateli informaci o tom, co se stalo\\
+%! pripojit pripady uziti vcetne zavislosti\\
+%
+%jedna se o aplikaci, ktera provazi celym projektem (zadanim) forenzniho auditu. sice existuji i jiny nastroje pro podporu takovychto projektu, ale projekt ma useky a nam jde o integraci porizenych vysledku
+%
+%}
+
+%=======================================================================
 
 This chapter deals with the design of the information system. Approaches to the implementation of requirements on the system stated in \ref{Requirements} are described here. We also provide a discussion about technologies useful for implementation and the description is accompanied with diagrams demonstrating the design. 
 
 \section{Application}
 
-The architecture of our application will be based on two fundamental parts. One of them will be collecting the data we will use and the other will display them to the user. From now on we will call this the \name{Collector} and the \name{Displayer}. This is a useful division because it simplifies the design and also keeps it easier to maintain. The aim of the \name{Collector} will be to transform the data from various sources to the format of data our application will need. 
+The architecture of our application will be based on two fundamental parts. One of them will be collecting the data we will use and the other will display them to the user. From now on we will call this the \name{Collector} and the \name{Displayer}. This is a useful division because it simplifies the design and also keeps it easier to maintain. The aim of the \name{Collector} will be to transform the data from various sources to some generic format for easier manipulation.
 
 There are numerous types of sources of data that can be used as evidence in forensic audit. The data can differ in inner structure and also in the content. Examples of this diversity are IM messages, pictures, GPS coordinates, audio-video files,emails logs of network activities, public information from social sites and internal company management or accounting system.
 
-In the best possible case our system is able to work with all of them, however we exclude from these sources pictures and the audio-video material, because this material does not need visualization. Nevertheless, our system is able to process the information this type of material contains, in case that it could be converted to the basic structure of our application, which will be described later. The task to provide this functionality is assigned to the \name{Collector}.
+Ideally our system is able to work with all of them, however we exclude pictures and the audio-video material from these sources because this material does not need visualization. Nevertheless, our system needs to be able to process the information this type of material contains, in case that it could be converted to the basic structure of our application, which will be described later. The task to provide this functionality is assigned to the \name{Collector}.
 
 Each of the previously mentioned type of source of data is somehow specific. Thus we need a specific solution for each one of them. This is an ideal job for a plug-in architecture. 
 
@@ -23,7 +37,7 @@ Each of the previously mentioned type of source of data is somehow specific. Thu
     \caption{Architecture of the application}\label{Architecture}
 \end{figure}
 
-Plug-in is a piece of software that does not work separately, it only extends the functionality of the application. The application usually provides an Application Programming Interface (API) so that the plug-in extension could communicate with the application properly. In case of this application it means, that for each source of data there will be a specific plug-in, that will be modified specifically for the format the source file is saved in. The purpose of the plug-in will be to read the source files and prepare the data for the \name{Collector}. The collector than saves it to the database. Finally the \name{Displayer} will access the database and provide the visualization of the case.
+Plug-in is a piece of software that does not work separately, it only extends the functionality of the application. The application usually provides an Application Programming Interface (API) so that the plug-in extension could communicate with the application properly. In case of this application it means that for each source of data there will be a specific plug-in. each plug-in will be made specifically for the format of the source file. The purpose of the plug-in will be to read the source files and prepare the data for the \name{Collector}. The collector than saves it to the database. Finally the \name{Displayer} will access the database and provide the visualization of the case.
 
 \begin{figure}[!h]
     \centering 
@@ -34,7 +48,7 @@ Plug-in is a piece of software that does not work separately, it only extends th
 
 \subsection{Database}
 \paragraph{Entity \name{Event}}
-The database model of our application is based on a entity called \name{Event} and several other entities. The Primary UID of \name{Event} is Iteger ID, then it consists of one mandatory time-stamp that indicates the time this event occured and also the time of start if the event was long-lasting. We need to distinguish between disposable events and longer lasting so in there is a mandatory boolean attribute \name{LongLasting} playing the role of a flag. If this attribute is true, another time-stamp attribute indicating the end of the \name{Event} is to be filled in. 
+The database model of our application is based on a entity called \name{Event} and several other entities. The Primary unique identification number (UID) of \name{Event} is Integer ID. It also consists of one mandatory time-stamp that indicates the time this event occurred or the time of the start if the event was long-lasting. We need to distinguish between one-time events and longer lasting ones so in there is a mandatory boolean attribute \name{LongLasting} playing the role of a flag. If this attribute is true, another time-stamp attribute indicating the end of the \name{Event} is to be filled in. 
 
 \begin{figure}[!h]
     \centering 
@@ -44,17 +58,17 @@ The database model of our application is based on a entity called \name{Event} a
 \end{figure}
 
 \paragraph{Entity \name{Event\_Detail}}
-We have prepared a entity \name{Event\_Detail} in case there would be some other details concerning the \name{Event}. This entity is in a 1:n relationship with \name{Event}. It means, that if we will need, there can be more details concerning \name{Event}. \name{Event\_Detail} has only one mandatory attribute called \name{Description}, that is prepared for 128 characters of text. For \name{Event} the relationship with \name{Event\_Detail} is optional, however, for \name{Event\_Detail} it is compulsory and the ID of \name{Event} is its a foreign key. 
+We have prepared a entity \name{Event\_Detail} in case there would be some other details concerning the \name{Event}. This entity is in a 1:n relationship with \name{Event}. It means, that if we will need, there can be more details concerning \name{Event}. \name{Event\_Detail} has only one mandatory attribute called \name{Description}, that is prepared for 128 characters of text. For \name{Event} the relationship with \name{Event\_Detail} is optional, however, for \name{Event\_Detail} it is compulsory and the ID of \name{Event} is its foreign key. 
 
 \paragraph{}
-The data we expect to use as a source should also contain information about the subject causing the event. For the subject we have a special model. Before describing it, let us explain why we need it. We cannot be sure what sources and what information concerning the subjects we will get. Our source files should primarily contain logs of various kinds of activities, not only logs of one subject. Because of this we cannot easily connect actual person with events. The identifier of the subject can be of different kind in different sources. For example while email clients are identified by email address, e.g. series of characters, users of IM messengers are identified by ID number, but the number is definitely not the same as the bank account number. Still one subject can be identified by all of these manners. 
+The data we expect to use as a source should also contain information about the subject causing the event. For the subject we have a special model. Before describing it, let us explain why we need it. We cannot be sure what sources and what information concerning the subjects we will get. Our source files should primarily contain logs of various kinds of activities, not only logs of one subject. Because of this we cannot easily connect actual person with events. The identifier of the subject can be of different kind in different sources. For example while email clients are identified by email address, e.g. character stings, IM users are identified by integer ID, nickname or even e-mail address. However this identifier is definitely not the same as the bank account number. Still ne subject may be identified by any number of any of these ways.
 
-For this reason we decided not to deal with merging these various accounts of one subject in the database. This will be done later by the \name{Displayer}. 
+For simplicity we decided not to deal with merging these various accounts of one subject in the database as it would increase complexity greatly. This will be done later by the \name{Displayer}. 
 
 \paragraph{\name{Participant}}
-In our database model we now establish a entity \name{Participant}. The primary key of this entity is a integer ID, and next optional attribute is a 36-char-long \name{Name}. This attribute is prepared for the case that the name of the participant would be stated in the source. For actual information about the source we prepare two extra mandatory attributes. The first, called \name{type} is designed to inform about the source of data the particular information came from. The second one is called \name{alias} and it is an array of 32 characters prepared to store the original identifier of the participant.
+In our database model we now establish the \name{Participant} entity. The primary key of this entity is an integer ID and next attribute is optional a 36-char-long \name{Name}. This attribute is prepared for the case that the name of the participant would be stated in the source. For actual information about the source we prepare two extra mandatory attributes. The first, called \name{type}, is designed to inform about the source of data the particular information came from. The second one is called \name{alias} and it is an array of 32 characters prepared to store the original identifier of the participant.
 
-The entity \name{Participant} contains two other entities called \name{Active} and \name{Passive}. Each one of them has the entity \name{Participant} as its superstructure. The relationship between \name{Participant} and \name{Event} is arranged via these two entities. Both these relationships are of m:n type. The only difference between them is that  for the \name{Event} entity the relationship with \name{Active Participant} is compulsory whereas with \name{Passive Participant} is optional. 
+The \name{Participant} entity contains two other entities called \name{Active} and \name{Passive}. Each one of them has the entity \name{Participant} as its superstructure. The relationship between \name{Participant} and \name{Event} is arranged via these two entities. Both these relationships are of m:n type. The only difference between them is that  for the \name{Event} entity the relationship with \name{Active Participant} is compulsory whereas with \name{Passive Participant} is optional. 
 
 This model enables \name{Events} to have more \name{Participants}, but forces the \name{Event} to have at least one \name{Active Participant}.
 
@@ -69,12 +83,12 @@ This model enables \name{Events} to have more \name{Participants}, but forces th
 
 \subsection{\name{Collector}} 
 
-The next section focus on the \name{Collector} part of the application. Before we start let us mention that the aim of the \name{Collector}. The main purpose is to provide a interface for inserting data to the database and managing the plug-ins that trans the source to our purpose. The \name{Collector} has its own GUI that enables user to choose from existing plug-ins or add a new one. The GUI saves the configuration to a configuration file and then hands it over to the \name{Collector}. The \name{Collector} provides the user the possibility of selecting and running the plug-ins. Each plug-in have its own GUI so that the user can specify any information needed for the run of the plug-in (such as the path to a file with the source material). 
+The next section focuses on the \name{Collector} part of the application. Before we start let us mention that the main purpose of the \name{Collector} is to provide an interface for inserting data to the database and managing the plug-ins that translate the source format to our format (based on the event structure). The \name{Collector} has its own GUI that enables the user to choose from existing plug-ins or add new ones. The GUI saves the configuration to a configuration file and then hands it over to the \name{Collector} back end. The \name{Collector} provides the user the possibility of selecting and running the plug-ins. Each plug-in has its own GUI so that the user can specify any information needed for them to run of the plug-in (such as the path to a file with the source material). 
 
 The \name{Collector} also manages the plug-ins added to the application. It means that it has a configuration file where all paths to the plug-ins are saved together with short clear description of the source. %\todo{} (tady jsem nejak prestala) \todo{}
 
-The key API that the \name{Collector} provides to the plug-in is the access to the database. %It might be a bit risky to provide the access to the database to a unknown piece of software.
-The plug-in load data into the tables and the \name{Collector} pushes the data into the database. Each plug-in only process the source file to the data model, create a SQL query and fill in the database. Note, that this application is expected to process data of a text character only. The application is not prepared for mining data from files of multimedia character unless the content is described in a structured text containing the date and some information identifying the related subject.
+The key API that the \name{Collector} provides to the plug-in is basically the access to the database. %It might be a bit risky to provide the access to the database to a unknown piece of software.
+Plug-ins load data into the tables and the \name{Collector} pushes the data into the database. Each plug-in only processes the source file to the data model, create a SQL query and fill in the database. Note, that this application is expected to process data of a text character only. The application is not prepared for mining data from files of multimedia character unless the content is described in a structured text containing the date and some information identifying the related subject.
 
 \begin{figure}[h]
 	\begin{center} 
@@ -85,7 +99,7 @@ The plug-in load data into the tables and the \name{Collector} pushes the data i
 
 \subsection{\name{Displayer}}
 
-The main purpose of the displayer is to visualize the data saved in the database. To be able to do this, it is necessary at first to deal with the problem of multiple \name{Participants} in the database that all mean the same \name{Subject}. We overcame this obstacle easily by creating a table for \name{Participant} unification to \name {Subjects}. However, because of the essence of the data we are working with and the general purpose of our application, we can not try to guess which \name{Participants} belong together. Therefore there is a special form helping the auditor unify them to subjects. 
+The main purpose of the displayer is to visualize the data saved in the database. To be able to do this, it is necessary at first to deal with the problem of multiple \name{Participants} in the database that all represent the same \name{Subject}. We can overcame this obstacle easily by creating a table for \name{Participant} unification to \name {Subjects}. However, because of the essence of the data we are working with and the general purpose of our application, we cannot try to guess which \name{Participants} belong together. Therefore there is a special form helping the auditor unify them to subjects. 
 
 \begin{figure}[h]
 	\begin{center} 
@@ -94,7 +108,7 @@ The main purpose of the displayer is to visualize the data saved in the database
 	\caption{Form for unifying \name{Participants} to Subjects}\label{form}
 \end{figure}
 
-Sample form is shown it the figure \ref{form}. In the left table there is a list of existing subjects. The user can add new subject easily by filing in the name and surname, or simply by clicking on the "Create subject" button. Auditor can also remove a subject by clicking on "Remove subject" button or edit name or surname of subject by clicking into the table. The \name{Displayer} creates a table containing the information about this mapping. When replaying the displayer uses these information to identify the correct events for each subject. The data model shown in picture \ref{model-displayer} indicates that each \name{Subject} can have many \name{Participants}, but each \name{Participant} can have only one \name{Participant}.
+Sample form is shown in the figure \ref{form}. In the left table there is a list of existing subjects. The user can add new subjects easily by filling in the name and surname and by clicking on the "Create subject" button. Auditor can also remove a subject by clicking on "Remove subject" button or edit name or surname of subject by clicking into the table. The \name{Displayer} creates a table containing the information about this mapping. When replaying the displayer uses this information to identify the correct events for each subject. The data model shown in picture \ref{model-displayer} indicates that each \name{Subject} can have many \name{Participants}, but each \name{Participant} can have only one \name{Participant}.
 
 \begin{figure}[!h]
     \centering 
@@ -104,9 +118,9 @@ Sample form is shown it the figure \ref{form}. In the left table there is a list
     \caption{The relation between \name{Subject} and \name{Participant}}\label{model-displayer}
 \end{figure}
 
-Now we can focus on the most important function of the application. We have a background for the visualization in the above modeled database. In the initialization part the \name{Displayer} generates names of all the known \name{Subjects} and places a checkbox next to each one of them. The state of the checkbox tells us whether we want to include the related \name{Subject} in the visualization. 
+Now we can focus on the most important function of the application. We have a background for the visualization in the above modeled database. In the initialization phase the \name{Displayer} generates names of all the known \name{Subjects} and places a checkbox next to each one of them. The state of the checkbox decides whether we want to include the related \name{Subject} in the visualization. 
 
-In the next step the \name{Displayer} enters proper SQL query. IDs of the subjects are replaced by the entire group of \name{Participants}. We then search in the database for all \name{Events} whose starting time is later than the date selected in the visualization tab and at the same time the some of the \name{Subjects} takes part in it. We also search for  \name{LongLasting} \name{Events} that ends after the current time. The result of the  selected  \name{Events} is then replayed by time. 
+In the next step the \name{Displayer} enters proper SQL query. IDs of the subjects are replaced by the entire group of \name{Participants}. We then search in the database for all \name{Events} whose starting time is later than the date selected in the visualization tab and at the same time the some of the \name{Subjects} takes part in it. We also search for  \name{LongLasting} \name{Events} that end after the selected time frame. The result of the  selected  \name{Events} is then replayed by time. 
 
 The process of replaying has a small obstacle concerning various animations in different cases. These differences are:
 \begin{enumerate}
@@ -126,12 +140,12 @@ The process of replaying has a small obstacle concerning various animations in d
 % 
  
  
-\subsection{Discussion} \label{Discussion}
+\chapter{Discussion} \label{Discussion}
 
 %popis rozdil mezi flatfile a databazi externi vs embeded
 \paragraph{Database} %\todo{}
 
-We recommend to use the Oracle database. The main reason is that it is one of the fastest and safest relational databases. Moreover it is a relational database so we do not make any platform - specific choice. If it would be necessary since it is a relational database it could be replaced for any other relational database and the Oracle Data Modeler is also very easy to use, we have already some good experience with it. 
+We recommend to use the Oracle database. The main reason is that it is one of the fastest and safest relational databases. If it was necessary since it is a relational database it could be replaced for any other relational database and the Oracle Data Modeler is also very easy to use, we have already some good experience with it. 
 
 \paragraph{Open Database Connectivity}
 Open Database Connectivity (ODBC) is a standardized software API that enables the access to database servers. The aim of ODBC is to provide an access independent on programming language, operating system or the database system. We recommend to use this technique while implementing this application. 
