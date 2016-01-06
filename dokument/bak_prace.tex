@@ -24,6 +24,7 @@
 \usepackage{wrapfig}
 \usepackage{todonotes}
 \usepackage{menukeys}
+\usepackage{fancyhdr}
 
 
 \usepackage{hyperref}
@@ -68,7 +69,6 @@
 %=========================================================
 
 
-
 %\newcommand{\todo}
 %{{\it
 %}}
@@ -87,7 +87,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%% zde jsou zavedeny některé "konstanty" - můžete, resp. musíte je ZMĚNIT %%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\cvut}{Czech Technical University}
+\newcommand{\cvut}{Czech Technical University in Prague}
 \newcommand{\fjfi}{Faculty of Nuclear Sciences and Physical Engineering}
 \newcommand{\kse}{Department of Mathematics}
 \newcommand{\obor}{Applied Information Technology}
@@ -245,6 +245,10 @@ I wish to thank to my supervisor for his inspiring feedback, my family for their
 %                                 - text se vkládá Z EXTERNÍCH SOUBORŮ
 %                                   (můžete ho také napsat přímo sem => smažte každé \input{...})
 \newpage % SEM NESAHEJTE!
+
+\lhead{\nouppercase{\textit{\rightmark}}} 
+\fancyfoot{}
+\pagestyle{fancy}
 
 \input{kapitoly/kapitoly.tex}
 
